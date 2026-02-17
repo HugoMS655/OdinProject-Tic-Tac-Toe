@@ -35,7 +35,7 @@ function drawDisplay(fstPlayerName, sndPlayerName) {
   gameStats.innerHTML = `
     <p>${fst.getName()}:${fst.getWins()}</p>
     <p>${snd.getName()}:${snd.getWins()}</p>
-    <p>Player Turn: "${gameController.getCurrentPlayer().getName()}"</p>
+    <p>Player Turn: ${gameController.getCurrentPlayer().getName()}</p>
     <button>Pause</button>
     <button>Restart Game</button>
     `;
