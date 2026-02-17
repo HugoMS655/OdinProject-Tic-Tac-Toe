@@ -1,4 +1,4 @@
-const Player = (() => {
+export const Player = (() => {
   function create(name, marker) {
     return {
       name,
@@ -13,12 +13,15 @@ const Player = (() => {
       getName() {
         return this.name;
       },
+      getWins() {
+        return this.wins;
+      },
     };
   }
   return { create };
 })();
 
-const gameBoard = (() => {
+export const gameBoard = (() => {
   const board = createEmptyBoard();
 
   const createEmptyBoard = () => {
@@ -55,7 +58,7 @@ const gameBoard = (() => {
   };
 })();
 
-const gameController = ((board, createPlayer) => {
+export const gameController = ((board, createPlayer) => {
   const players = [];
   let currentTurn = 0;
   let activeGame = false;
@@ -100,8 +103,8 @@ const gameController = ((board, createPlayer) => {
   const getCurrentPlayer = () => {
     return players[currentTurn];
   };
-  const getPlayers = () => {
-    return players;
+  const getPlayer = (name) => {
+    return players.find((player) => player.getName() === name);
   };
   const newMatch = () => {
     board.reset();
@@ -160,6 +163,6 @@ const gameController = ((board, createPlayer) => {
     resetGame,
     newMatch,
     getCurrentPlayer,
-    getPlayers,
+    getPlayer,
   };
 })(gameBoard, Player.create);
