@@ -4,23 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css/styles.css">
+    <link rel="stylesheet" href="styles.css/styles.css">
     <title>Tic-Tac-Toe</title>
 </head>
 
 <body>
     <main>
+        <h1>Tic-Tac-Toe</h1>
         <div id="form-container">
             <form id="names-form">
                 <label>First Player Name:
-                    <input type="text" name="fstName" placeholder="First Player Name" minlength="2" maxlength="100">
+                    <input type="text" name="fstName" placeholder="First Player Name" minlength="2" maxlength="100"
+                        required>
                 </label>
 
                 <label>Second Player Name:
-                    <input type="text" name="sndName" placeholder="Second Player Name" minlength="2" maxlength="100">
+                    <input type="text" name="sndName" placeholder="Second Player Name" minlength="2" maxlength="100"
+                        required>
                 </label>
 
-                <input type="submit" value="Play Game">
+                <input class="btn" type="submit" value="Play Game">
             </form>
         </div>
         <div id="game-container">

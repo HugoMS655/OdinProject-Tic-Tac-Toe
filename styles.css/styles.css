@@ -4,18 +4,24 @@ body {
   box-sizing: border-box;
 }
 
-#names-form {
+#form-container {
+  margin-top: 20px;
   display: grid;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  place-items: center;
+}
+
+h1 {
+  text-align: center;
 }
 
 label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   font-weight: bolder;
 }
 
-[value="Play Game"] {
+.btn {
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
@@ -24,18 +30,58 @@ label {
   font-size: 1rem;
 }
 
+#toggle-btn,
+#new-game-btn,
+#new-match-btn {
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+}
+
+#toggle-btn {
+  background-color: blue;
+}
+#new-match-btn {
+  background-color: green;
+}
+#new-game-btn {
+  background-color: red;
+}
+
+#game-container {
+  margin-top: 20px;
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+  place-items: center;
+  gap: 10px;
+}
+
 #game-board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 5px;
 }
 .cell {
   background-color: lightgray;
-  border: 2px solid black;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
   cursor: pointer;
+}
+
+#gameStats p {
+  text-align: center;
+  line-height: 1.2;
+}
+
+#btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.hidden {
+  display: none !important;
 }

@@ -70,15 +70,9 @@ export const gameController = ((board, createPlayer) => {
     activeGame = true;
   };
   const playTurn = (x, y) => {
-    if (!activeGame) {
-      return {
-        message: "Game Not Initialized!",
-        state: "Error",
-      };
-    }
     const currentPlayer = players[currentTurn];
     if (!board.checkIfEmpty(x, y)) {
-      return { message: "Occupied Position!", state: "Invalid Move" };
+      return { message: "Position already occupied!", state: "Invalid Move" };
     }
 
     board.placeMarker(currentPlayer.getMarker(), x, y);
@@ -90,13 +84,10 @@ export const gameController = ((board, createPlayer) => {
       return { message: `Winner:${currentPlayer.getName()}`, state: "Win" };
     } else if (board.isFull()) {
       activeGame = false;
-      return { message: "Tie!", state: "Tie" };
+      return { message: "It's a tie!", state: "Tie" };
     } else {
       currentTurn = (currentTurn + 1) % 2;
-      return {
-        message: `Next player: ${players[currentTurn].getName()}`,
-        state: "Playing",
-      };
+      return { state: "Playing" };
     }
   };
   const getCurrentPlayer = () => {
@@ -104,6 +95,9 @@ export const gameController = ((board, createPlayer) => {
   };
   const getPlayer = (name) => {
     return players.find((player) => player.getName() === name);
+  };
+  const getPlayers = () => {
+    return [...players];
   };
   const newMatch = () => {
     board.reset();
@@ -116,11 +110,18 @@ export const gameController = ((board, createPlayer) => {
     activeGame = false;
     players.length = 0;
   };
+  const toggleGame = () => {
+    activeGame = !activeGame;
+  };
+  const gameState = () => {
+    return activeGame;
+  };
   const checkForWinner = () => {
     const boardStatus = board.getBoard();
     //Check lines
     for (let i = 0; i < 3; i++) {
       if (
+        boardStatus[i][0] !== "" &&
         boardStatus[i][0] === boardStatus[i][1] &&
         boardStatus[i][0] === boardStatus[i][2]
       ) {
@@ -130,6 +131,7 @@ export const gameController = ((board, createPlayer) => {
     //Check rows
     for (let j = 0; j < 3; j++) {
       if (
+        boardStatus[0][j] !== "" &&
         boardStatus[0][j] === boardStatus[1][j] &&
         boardStatus[1][j] === boardStatus[2][j]
       ) {
@@ -140,6 +142,7 @@ export const gameController = ((board, createPlayer) => {
 
     //left to right
     if (
+      boardStatus[0][0] !== "" &&
       boardStatus[0][0] === boardStatus[1][1] &&
       boardStatus[1][1] === boardStatus[2][2]
     ) {
@@ -147,6 +150,7 @@ export const gameController = ((board, createPlayer) => {
     }
     //right to left
     if (
+      boardStatus[0][2] !== "" &&
       boardStatus[0][2] === boardStatus[1][1] &&
       boardStatus[1][1] === boardStatus[2][0]
     ) {
@@ -160,8 +164,11 @@ export const gameController = ((board, createPlayer) => {
     playTurn,
     checkForWinner,
     resetGame,
+    toggleGame,
+    gameState,
     newMatch,
     getCurrentPlayer,
     getPlayer,
+    getPlayers,
   };
 })(gameBoard, Player.create);
