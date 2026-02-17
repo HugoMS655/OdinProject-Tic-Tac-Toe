@@ -1,4 +1,4 @@
-import { Player, gameBoard, gameController } from "./tictactoe";
+import { Player, gameBoard, gameController } from "./tictactoe.js";
 
 const namesForm = document.querySelector("#names-form");
 const gameContainer = document.querySelector("#game-container");

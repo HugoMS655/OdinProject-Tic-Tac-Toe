@@ -22,13 +22,12 @@ export const Player = (() => {
 })();
 
 export const gameBoard = (() => {
-  const board = createEmptyBoard();
-
   const createEmptyBoard = () => {
     return Array(3)
       .fill(null)
       .map(() => Array(3).fill(""));
   };
+  let board = createEmptyBoard();
   const placeMarker = (marker, x, y) => {
     board[x][y] = marker;
   };
