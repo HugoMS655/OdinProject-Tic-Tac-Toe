@@ -22,13 +22,12 @@ export const Player = (() => {
 })();
 
 export const gameBoard = (() => {
-  const board = createEmptyBoard();
-
   const createEmptyBoard = () => {
     return Array(3)
       .fill(null)
       .map(() => Array(3).fill(""));
   };
+  let board = createEmptyBoard();
   const placeMarker = (marker, x, y) => {
     board[x][y] = marker;
   };
@@ -78,7 +77,7 @@ export const gameController = ((board, createPlayer) => {
       };
     }
     const currentPlayer = players[currentTurn];
-    if (board.checkIfEmpty(x, y)) {
+    if (!board.checkIfEmpty(x, y)) {
       return { message: "Occupied Position!", state: "Invalid Move" };
     }
 
@@ -129,7 +128,7 @@ export const gameController = ((board, createPlayer) => {
       }
     }
     //Check rows
-    for (let j = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
       if (
         boardStatus[0][j] === boardStatus[1][j] &&
         boardStatus[1][j] === boardStatus[2][j]
